@@ -1,7 +1,10 @@
-# Experiment--05-Implementation-of-flipflops-using-verilog
-### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
+# Experiment 05 Implementation of flipflops using verilog
+### AIM: 
+To implement all the flipflops using verilog and validating their functionality using their functional tables
+### HARDWARE REQUIRED:  
+PC, Cyclone II , USB flasher
+### SOFTWARE REQUIRED:  
+Quartus prime
 ### THEORY 
 SR Flip-Flop
 SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
@@ -102,23 +105,44 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
+1. Using nand gates and wires construct sr flip flop.
+
+2. Repeat same steps to construct JK,D,T flipflops.
+
+3. Find Rtl logic and timing diagram for all flipflops.
+
+4. End the program.
 
 
 
 ### PROGRAM 
-/*
+```
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: Balaji K
+RegisterNumber: 212221230011
+```
+```
+module flipflops(S,R,Q,Qbar,CLK);
+input S,R,CLK;
+output reg Q,Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge CLK)
+begin
+Q=S|(Q&(~R));
+Qbar=R|(Qbar&(~S));
+end
+endmodule
+```
 
 
 
 
 
 
-### RTL LOGIC FOR FLIPFLOPS 
+### RTL LOGIC FOR FLIPFLOPS
+![image](https://github.com/SOMEASVAR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93434149/6d3d1085-2fc2-4f9b-8738-c13a95a2499e)
+
 
 
 
@@ -130,6 +154,7 @@ RegisterNumber:
 
 ### TIMING DIGRAMS FOR FLIP FLOPS 
 
+![image](https://github.com/SOMEASVAR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93434149/8f4e17d1-39e8-4b78-b19e-4cae4145fd1c)
 
 
 
@@ -138,3 +163,4 @@ RegisterNumber:
 
 
 ### RESULTS 
+We have successfully implemented all the flipflops using verilog and validating their functionality using their functional tables.
