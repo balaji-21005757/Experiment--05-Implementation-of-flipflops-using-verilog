@@ -3,7 +3,7 @@
 To implement all the flipflops using verilog and validating their functionality using their functional tables
 ### HARDWARE REQUIRED:  
 PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:  
+### SOFTWARE REQUIRED: 
 Quartus prime
 ### THEORY 
 SR Flip-Flop
@@ -105,13 +105,17 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-1. Using nand gates and wires construct sr flip flop.
+1.Create a project with required entities.
 
-2. Repeat same steps to construct JK,D,T flipflops.
+2.Create a module along with respective file name.
 
-3. Find Rtl logic and timing diagram for all flipflops.
+3.Run the respective programs for the given boolean equations.
 
-4. End the program.
+4.Run the module and get the respective RTL outputs.
+
+5.Create university program(VWF) for getting timing diagram.
+
+6.Give the respective inputs for timing diagram and obtain the results.
 
 
 
@@ -121,41 +125,91 @@ Program for flipflops  and verify its truth table in quartus using Verilog progr
 Developed by: Balaji K
 RegisterNumber: 212221230011
 ```
+#### SR Flipflop:
 ```
-module flipflops(S,R,Q,Qbar,CLK);
-input S,R,CLK;
+module flipflop(s,r,Q,Qbar,clk);
+input s,r,clk;
 output reg Q,Qbar;
 initial Q=0;
 initial Qbar=1;
-always @(posedge CLK)
+always @(posedge clk)
 begin
-Q=S|(Q&(~R));
-Qbar=R|(Qbar&(~S));
+Q=s|(Q&(~r));
+Qbar=r|(Qbar&(~s));
 end
 endmodule
 ```
+#### JKFlipflop:
+```
+module jkflipflop(j,k,clk,q,qbar);
+input j,k,clk;
+output reg q;
+output reg qbar;
+initial q=0;
+initial qbar=1;
+always @(posedge clk)
+begin
+q=(j&(~q))|((~k)&q);
+qbar=((~j)&q)|(k &(~q));
+end 
+endmodule
+```
+#### D Flipflop:
+```
+module EXDflipflop(D,clk,Q,Qbar);
+input D,clk;
+output reg Q;
+output reg Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge clk)
+begin
+Q=D;
+Qbar=~D;
+end
+endmodule
+```
+#### T Flipflop:
+```
+module t(T,clk,q,qbar);
+input T,clk;
+output reg q;
+output reg qbar;
+initial q=0;
+initial qbar=1;
+always @ (posedge clk)
+begin
+q=(T&(~q))|((~T)&q);
+qbar=(~q);
+end
+endmodule
+```
+### RTL LOGIC FOR FLIPFLOPS 
+#### SR Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/a05a5ea4-1e41-4116-a769-4fb705fb555e)
+
+#### JK Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/b583bd53-c7ec-486b-9c1f-9475821b2462)
+
+#### D Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/e3778472-cc7d-4a15-9f02-767f5b6b971c)
+#### T Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/addc0b3d-274c-4862-a0f8-489f3f019599)
 
 
 
+### OUTPUT WAVEFORM:
+#### SR Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/302be0bd-c805-4230-91ff-cfc3ca62a71b)
 
+#### JK Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/00ec9100-2197-4031-b1ff-1103d1057eb0)
 
+#### D Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/d1c8b7d6-4d9a-4beb-88be-f6d1bba18c86)
 
-### RTL LOGIC FOR FLIPFLOPS
-![image](https://github.com/SOMEASVAR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93434149/6d3d1085-2fc2-4f9b-8738-c13a95a2499e)
-
-
-
-
-
-
-
-
-
-
-### TIMING DIGRAMS FOR FLIP FLOPS 
-
-![image](https://github.com/SOMEASVAR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93434149/8f4e17d1-39e8-4b78-b19e-4cae4145fd1c)
-
+#### T Flipflop:
+![image](https://github.com/ShamRathan/Experiment--05-Implementation-of-flipflops-using-verilog/assets/93587823/ac1b9798-ecca-4aa0-a0e3-c793294a89ae)
 
 
 
@@ -163,4 +217,4 @@ endmodule
 
 
 ### RESULTS 
-We have successfully implemented all the flipflops using verilog and validating their functionality using their functional tables.
+All the flipflops are implemented using verilog and their functionality has been validated using their functional tables.
